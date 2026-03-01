@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+
+# VS Code
+.vscode/
+
+# Temp files
+~$*
+*.tmp
+
+# Model output (có thể tái tạo)
+# AI/decision_tree_model.pkl
+# AI/decision_tree.png
