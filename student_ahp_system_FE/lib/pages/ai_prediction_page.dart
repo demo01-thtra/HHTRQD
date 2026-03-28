@@ -1,6 +1,7 @@
 import 'package:dssstudentfe/ViewModels/ai_viewmodel.dart';
 import 'package:dssstudentfe/pages/components/main_layout.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class AiPredictionPage extends StatefulWidget {
@@ -128,19 +129,26 @@ class _AiPredictionPageState extends State<AiPredictionPage> {
                 // Header
                 Container(
                   width: double.infinity,
-                  padding: const EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(24),
                   decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [Colors.blue.shade700, Colors.blue.shade400],
+                    gradient: const LinearGradient(
+                      colors: [Color(0xFF1E3A5F), Color(0xFF3B82F6)],
                     ),
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(16),
+                    boxShadow: [
+                      BoxShadow(
+                        color: const Color(0xFF3B82F6).withValues(alpha: 0.3),
+                        blurRadius: 20,
+                        offset: const Offset(0, 8),
+                      ),
+                    ],
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
+                      Text(
                         "🌳 Decision Tree – Dự đoán Pass / Fail",
-                        style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+                        style: GoogleFonts.inter(color: Colors.white, fontSize: 22, fontWeight: FontWeight.w700),
                       ),
                       const SizedBox(height: 8),
                       const Text(
@@ -177,18 +185,18 @@ class _AiPredictionPageState extends State<AiPredictionPage> {
 
                 // Input form
                 Container(
-                  padding: const EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(24),
                   decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(12),
-                    boxShadow: const [BoxShadow(color: Colors.black12, blurRadius: 8)],
+                    borderRadius: BorderRadius.circular(16),
+                    boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.04), blurRadius: 12, offset: const Offset(0, 4))],
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
+                      Text(
                         "📝 Nhập thông tin sinh viên",
-                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                        style: GoogleFonts.inter(fontSize: 18, fontWeight: FontWeight.w700),
                       ),
                       const SizedBox(height: 16),
                       Row(
@@ -248,14 +256,15 @@ class _AiPredictionPageState extends State<AiPredictionPage> {
                                   height: 20,
                                   child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white),
                                 )
-                              : const Icon(Icons.psychology, color: Colors.white),
+                              : const Icon(Icons.psychology_rounded, color: Colors.white),
                           label: Text(
                             vm.isLoading ? "Đang dự đoán..." : "🔮 Dự đoán nguy cơ",
-                            style: const TextStyle(fontSize: 16, color: Colors.white),
+                            style: GoogleFonts.inter(fontSize: 15, color: Colors.white, fontWeight: FontWeight.w600),
                           ),
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.blue.shade700,
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                            backgroundColor: const Color(0xFF3B82F6),
+                            elevation: 0,
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                           ),
                         ),
                       ),

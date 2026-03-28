@@ -3,6 +3,7 @@ import 'package:dssstudentfe/ViewModels/student_viewmodel.dart';
 import 'package:dssstudentfe/pages/components/main_layout.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class DashboardPage extends StatefulWidget {
@@ -45,37 +46,78 @@ class _DashboardPageState extends State<DashboardPage> {
           final low = riskVm.summary!['low'] ?? 0;
 
           return SingleChildScrollView(
-            padding: const EdgeInsets.all(24),
+            padding: const EdgeInsets.all(28),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // Welcome header
                 Container(
                   width: double.infinity,
-                  padding: const EdgeInsets.all(24),
+                  padding: const EdgeInsets.all(28),
                   decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [Colors.blue.shade700, Colors.blue.shade400],
+                    gradient: const LinearGradient(
+                      colors: [Color(0xFF1E3A5F), Color(0xFF3B82F6)],
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
                     ),
-                    borderRadius: BorderRadius.circular(16),
+                    borderRadius: BorderRadius.circular(20),
+                    boxShadow: [
+                      BoxShadow(
+                        color: const Color(0xFF3B82F6).withValues(alpha: 0.3),
+                        blurRadius: 20,
+                        offset: const Offset(0, 8),
+                      ),
+                    ],
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  child: Row(
                     children: [
-                      const Text(
-                        "Hệ thống Cảnh Báo Sớm DSS",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Hệ thống Cảnh Báo Sớm DSS",
+                              style: GoogleFonts.inter(
+                                color: Colors.white,
+                                fontSize: 26,
+                                fontWeight: FontWeight.w800,
+                              ),
+                            ),
+                            const SizedBox(height: 8),
+                            Text(
+                              "Phân tích rủi ro sinh viên bằng AHP & Decision Tree",
+                              style: GoogleFonts.inter(
+                                color: Colors.white.withValues(alpha: 0.7),
+                                fontSize: 15,
+                              ),
+                            ),
+                            const SizedBox(height: 16),
+                            Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                              decoration: BoxDecoration(
+                                color: Colors.white.withValues(alpha: 0.15),
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              child: Text(
+                                "📊 Tổng: $total sinh viên đang theo dõi",
+                                style: GoogleFonts.inter(
+                                  color: Colors.white,
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      const SizedBox(height: 8),
-                      Text(
-                        "Phân tích rủi ro sinh viên bằng AHP & AI | Tổng: $total sinh viên",
-                        style: const TextStyle(color: Colors.white70, fontSize: 14),
+                      const SizedBox(width: 20),
+                      Container(
+                        padding: const EdgeInsets.all(20),
+                        decoration: BoxDecoration(
+                          color: Colors.white.withValues(alpha: 0.1),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: const Icon(Icons.school_rounded, color: Colors.white, size: 56),
                       ),
                     ],
                   ),
@@ -284,8 +326,8 @@ class _DashboardPageState extends State<DashboardPage> {
                   title: "🔴 Sinh viên nguy cơ cao nhất",
                   child: riskVm.topRisk.isNotEmpty
                       ? DataTable(
-                          headingRowColor: WidgetStateProperty.all(Colors.red.shade50),
-                          columnSpacing: 24,
+                          headingRowColor: WidgetStateProperty.all(const Color(0xFFFEF2F2)),
+                          columnSpacing: 28,
                           columns: const [
                             DataColumn(label: Text("STT", style: TextStyle(fontWeight: FontWeight.bold))),
                             DataColumn(label: Text("Mã SV", style: TextStyle(fontWeight: FontWeight.bold))),
@@ -355,45 +397,56 @@ class _DashboardPageState extends State<DashboardPage> {
   }) {
     return Expanded(
       child: Container(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.all(22),
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(14),
+          borderRadius: BorderRadius.circular(16),
           boxShadow: [
-            BoxShadow(color: color.withValues(alpha: 0.15), blurRadius: 12, offset: const Offset(0, 4)),
+            BoxShadow(color: Colors.black.withValues(alpha: 0.04), blurRadius: 12, offset: const Offset(0, 4)),
           ],
-          border: Border(left: BorderSide(color: color, width: 4)),
         ),
         child: Row(
           children: [
             Container(
-              padding: const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
                 color: color.withValues(alpha: 0.1),
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(14),
               ),
-              child: Icon(icon, color: color, size: 28),
+              child: Icon(icon, color: color, size: 26),
             ),
-            const SizedBox(width: 14),
+            const SizedBox(width: 16),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     label,
-                    style: TextStyle(color: Colors.grey.shade600, fontSize: 13),
+                    style: GoogleFonts.inter(
+                      color: const Color(0xFF94A3B8),
+                      fontSize: 12,
+                      fontWeight: FontWeight.w500,
+                    ),
                     overflow: TextOverflow.ellipsis,
                   ),
-                  const SizedBox(height: 4),
+                  const SizedBox(height: 6),
                   Text(
                     "$value",
-                    style: TextStyle(
+                    style: GoogleFonts.inter(
                       fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                      color: color,
+                      fontWeight: FontWeight.w800,
+                      color: const Color(0xFF1E293B),
                     ),
                   ),
                 ],
+              ),
+            ),
+            Container(
+              width: 4,
+              height: 40,
+              decoration: BoxDecoration(
+                color: color,
+                borderRadius: BorderRadius.circular(2),
               ),
             ),
           ],
@@ -405,21 +458,24 @@ class _DashboardPageState extends State<DashboardPage> {
   Widget _buildChartCard({required String title, required Widget child}) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(14),
-        boxShadow: const [BoxShadow(color: Colors.black12, blurRadius: 8)],
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(color: Colors.black.withValues(alpha: 0.04), blurRadius: 12, offset: const Offset(0, 4)),
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             title,
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+            style: GoogleFonts.inter(fontWeight: FontWeight.w700, fontSize: 16, color: const Color(0xFF1E293B)),
           ),
-          const Divider(),
-          const SizedBox(height: 8),
+          const SizedBox(height: 4),
+          Divider(color: Colors.grey.shade100),
+          const SizedBox(height: 12),
           child,
         ],
       ),

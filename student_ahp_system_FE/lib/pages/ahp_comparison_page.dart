@@ -1,6 +1,7 @@
 import 'package:dssstudentfe/ViewModels/ahp_viewmodel.dart';
 import 'package:dssstudentfe/pages/ahp_result_page.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class AhpComparisonPage extends StatefulWidget {
@@ -64,24 +65,31 @@ class _AhpComparisonPageState extends State<AhpComparisonPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("So sánh các cặp tiêu chí",style: TextStyle(color: Colors.white),),
-      backgroundColor: Colors.blue.shade800,),
+      backgroundColor: const Color(0xFFF5F7FA),
 
-      backgroundColor: Color(0xfff5f7fb),
+      appBar: AppBar(
+        title: Text("So sánh các cặp tiêu chí",
+          style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.w600),
+        ),
+        backgroundColor: const Color(0xFF1E293B),
+        iconTheme: const IconThemeData(color: Colors.white),
+        elevation: 0,
+      ),
 
       body: Center(
         child: Container(
 
-          width: 600,
-          padding: EdgeInsets.all(20),
+          width: 620,
+          padding: const EdgeInsets.all(32),
 
           decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(20),
             boxShadow: [
               BoxShadow(
-                blurRadius: 10,
-                color: Colors.black12,
+                blurRadius: 20,
+                color: Colors.black.withValues(alpha: 0.06),
+                offset: const Offset(0, 8),
               )
             ],
           ),
@@ -90,23 +98,23 @@ class _AhpComparisonPageState extends State<AhpComparisonPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 20),
+                const SizedBox(height: 8),
 
-                /// TITLE
                 Text(
                   "So sánh cặp các tiêu chí",
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
+                  style: GoogleFonts.inter(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w700,
+                    color: const Color(0xFF1E293B),
                   ),
                 ),
-
+                const SizedBox(height: 4),
                 Text(
                   "So sánh mức độ quan trọng giữa các cặp tiêu chí theo thang đo Saaty (1-9)",
-                  style: TextStyle(color: Colors.grey),
+                  style: GoogleFonts.inter(color: const Color(0xFF94A3B8), fontSize: 14),
                 ),
 
-                SizedBox(height: 20),
+                const SizedBox(height: 24),
 
                 /// PAIRS
                 Column(
@@ -115,29 +123,48 @@ class _AhpComparisonPageState extends State<AhpComparisonPage> {
                     String key = pair["key"]!;
 
                     return Container(
-                      margin: EdgeInsets.only(bottom: 12),
-                      padding: EdgeInsets.all(12),
+                      margin: const EdgeInsets.only(bottom: 14),
+                      padding: const EdgeInsets.all(16),
 
                       decoration: BoxDecoration(
-                        color: Colors.blue.shade50,
-                        borderRadius: BorderRadius.circular(8),
+                        color: const Color(0xFFF8FAFC),
+                        borderRadius: BorderRadius.circular(14),
+                        border: Border.all(color: const Color(0xFFE2E8F0)),
                       ),
 
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
 
-                          Text(
-                            "So sánh: ${pair["a"]} với ${pair["b"]}",
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                          Row(
+                            children: [
+                              Container(
+                                padding: const EdgeInsets.all(6),
+                                decoration: BoxDecoration(
+                                  color: const Color(0xFF3B82F6).withValues(alpha: 0.1),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child: const Icon(Icons.compare_arrows_rounded, color: Color(0xFF3B82F6), size: 18),
+                              ),
+                              const SizedBox(width: 10),
+                              Text(
+                                "${pair["a"]}  vs  ${pair["b"]}",
+                                style: GoogleFonts.inter(fontWeight: FontWeight.w600, fontSize: 14),
+                              ),
+                            ],
                           ),
 
-                          SizedBox(height: 8),
+                          const SizedBox(height: 12),
 
                           DropdownButtonFormField<String>(
                             initialValue: selectedValues[key],
                             decoration: InputDecoration(
-                              border: OutlineInputBorder(),
+                              border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: BorderSide(color: Colors.grey.shade300),
+                              ),
+                              contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
                             ),
                             items: saatyScale.map((value) {
                               return DropdownMenuItem(
@@ -160,42 +187,53 @@ class _AhpComparisonPageState extends State<AhpComparisonPage> {
 
                 SizedBox(height: 20),
                 Container(
-                  padding: EdgeInsets.all(12),
+                  padding: const EdgeInsets.all(16),
 
                   decoration: BoxDecoration(
-                    color: Colors.blue.shade300,
-                    borderRadius: BorderRadius.circular(8),
+                    color: const Color(0xFFF0F9FF),
+                    borderRadius: BorderRadius.circular(14),
+                    border: Border.all(color: const Color(0xFFBAE6FD)),
                   ),
 
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
 
-                      Text(
-                        "Hướng dẫn thang đo Saaty:",
-                        style: TextStyle(fontWeight: FontWeight.bold,color: Colors.blue.shade800),
+                      Row(
+                        children: [
+                          const Icon(Icons.lightbulb_rounded, color: Color(0xFF0284C7), size: 18),
+                          const SizedBox(width: 8),
+                          Text(
+                            "Hướng dẫn thang đo Saaty:",
+                            style: GoogleFonts.inter(fontWeight: FontWeight.w600, color: const Color(0xFF0369A1)),
+                          ),
+                        ],
                       ),
 
-                      SizedBox(height: 8),
+                      const SizedBox(height: 10),
 
-                      Text("1 : Hai tiêu chí có mức độ quan trọng ngang nhau",style: TextStyle(color: Colors.blue.shade900),),
-                      Text("3 : Tiêu chí thứ nhất hơi quan trọng hơn",style: TextStyle(color: Colors.blue.shade900)),
-                      Text("5 : Tiêu chí thứ nhất quan trọng hơn",style: TextStyle(color: Colors.blue.shade900)),
-                      Text("7 : Tiêu chí thứ nhất rất quan trọng",style: TextStyle(color: Colors.blue.shade900)),
-                      Text("9 : Tiêu chí thứ nhất cực kỳ quan trọng",style: TextStyle(color: Colors.blue.shade900)),
-
+                      ...[
+                        "1 : Hai tiêu chí có mức độ quan trọng ngang nhau",
+                        "3 : Tiêu chí thứ nhất hơi quan trọng hơn",
+                        "5 : Tiêu chí thứ nhất quan trọng hơn",
+                        "7 : Tiêu chí thứ nhất rất quan trọng",
+                        "9 : Tiêu chí thứ nhất cực kỳ quan trọng",
+                      ].map((text) => Padding(
+                        padding: const EdgeInsets.only(bottom: 4),
+                        child: Text(text, style: GoogleFonts.inter(color: const Color(0xFF0369A1), fontSize: 13)),
+                      )),
                     ],
                   ),
                 ),
 
-                SizedBox(height: 20),
-                //ma tran theo tieu chi
+                SizedBox(height: 24),
 
                 Text(
                   "Ma trận so sánh cặp",
-                  style: TextStyle(
+                  style: GoogleFonts.inter(
                     fontSize: 18,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w700,
+                    color: const Color(0xFF1E293B),
                   ),
                 ),
 
@@ -205,18 +243,19 @@ class _AhpComparisonPageState extends State<AhpComparisonPage> {
                 /// BUTTON
                 SizedBox(
                   width: double.infinity,
-                  child: ElevatedButton(
+                  height: 48,
+                  child: ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue.shade800,
-                      padding: EdgeInsets.symmetric(vertical: 14),
+                      backgroundColor: const Color(0xFF3B82F6),
+                      foregroundColor: Colors.white,
+                      elevation: 0,
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                     ),
                     onPressed: caculate,
-                    child: Text(
+                    icon: const Icon(Icons.calculate_rounded, size: 20),
+                    label: Text(
                       "Tính trọng số",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
+                      style: GoogleFonts.inter(fontWeight: FontWeight.w600, fontSize: 15),
                     ),
                   ),
                 )

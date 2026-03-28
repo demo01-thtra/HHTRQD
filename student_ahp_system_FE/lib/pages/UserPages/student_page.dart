@@ -7,6 +7,7 @@ import 'package:dssstudentfe/pages/UserPages/student_edit_page.dart';
 import 'package:dssstudentfe/pages/components/main_layout.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class StudentPage extends StatefulWidget {
@@ -51,7 +52,7 @@ class _StudentPageState extends State<StudentPage> {
             currentPage: "/students",
             title: "Quản lý sinh viên",
             body: Padding(
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(28),
 
               child: Column(
                 children: [
@@ -68,30 +69,49 @@ class _StudentPageState extends State<StudentPage> {
                           },
                           decoration: InputDecoration(
                             hintText: "Tìm kiếm theo mã SV, tên, lớp...",
-                            prefixIcon: Icon(Icons.search),
-                            border: OutlineInputBorder(),
+                            hintStyle: GoogleFonts.inter(color: const Color(0xFF94A3B8)),
+                            prefixIcon: const Icon(Icons.search_rounded, color: Color(0xFF94A3B8)),
+                            filled: true,
+                            fillColor: Colors.white,
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide: BorderSide(color: Colors.grey.shade200),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide: BorderSide(color: Colors.grey.shade200),
+                            ),
                           ),
                         ),
                       ),
 
-                      SizedBox(width: 10),
+                      const SizedBox(width: 12),
 
                       Row(
                         children: [
                           ElevatedButton.icon(
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.blue,
+                              backgroundColor: const Color(0xFF3B82F6),
+                              foregroundColor: Colors.white,
+                              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                              elevation: 0,
                             ),
                             onPressed: () {
                               showAddStudentDialog(context);
                             },
-                            icon: Icon(Icons.add, color: Colors.white),
-                            label: Text(
-                              "Thêm sinh viên",
-                              style: TextStyle(color: Colors.white),
-                            ),
+                            icon: const Icon(Icons.add_rounded, size: 20),
+                            label: Text("Thêm SV", style: GoogleFonts.inter(fontWeight: FontWeight.w600)),
                           ),
+                          const SizedBox(width: 8),
                           ElevatedButton.icon(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color(0xFF10B981),
+                              foregroundColor: Colors.white,
+                              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                              elevation: 0,
+                            ),
                             onPressed: () async {
                               final result = await FilePicker.platform.pickFiles(
                                 type: FileType.custom,
@@ -123,8 +143,15 @@ class _StudentPageState extends State<StudentPage> {
                             icon: Icon(Icons.upload_file),
                             label: Text("Import Excel"),
                           ),
-                          const SizedBox(width: 20,),
-                          ElevatedButton(
+                          const SizedBox(width: 8),
+                          ElevatedButton.icon(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color(0xFFF59E0B),
+                              foregroundColor: Colors.white,
+                              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                              elevation: 0,
+                            ),
 
                             onPressed: context.watch<RiskViewModel>().isLoading?null:()async{
                               await context.read<RiskViewModel>().calculateAll();
@@ -133,14 +160,15 @@ class _StudentPageState extends State<StudentPage> {
                                 SnackBar(content: Text("Đã tính risk cho tất cả học sinh"))
                               );
                             },
-                            child: Text("Tính Risk "),
+                            icon: const Icon(Icons.calculate_rounded, size: 20),
+                            label: Text("Tính Risk", style: GoogleFonts.inter(fontWeight: FontWeight.w600)),
                           ),
                         ],
                       )
                     ],
                   ),
 
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
 
                   /// TABLE
                   Expanded(
@@ -148,9 +176,9 @@ class _StudentPageState extends State<StudentPage> {
 
                       decoration: BoxDecoration(
                         color: Colors.white,
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(16),
                         boxShadow: [
-                          BoxShadow(color: Colors.black12, blurRadius: 5)
+                          BoxShadow(color: Colors.black.withValues(alpha: 0.04), blurRadius: 12, offset: const Offset(0, 4))
                         ],
                       ),
 
@@ -250,14 +278,19 @@ class _StudentPageState extends State<StudentPage> {
                                       if(level == "Low Risk") color = Colors.green;
 
                                       return Container(
-                                        padding: EdgeInsets.symmetric(horizontal:10, vertical:4),
+                                        padding: const EdgeInsets.symmetric(horizontal:12, vertical:6),
                                         decoration: BoxDecoration(
-                                          color: color,
-                                          borderRadius: BorderRadius.circular(6),
+                                          color: color.withValues(alpha: 0.1),
+                                          borderRadius: BorderRadius.circular(20),
+                                          border: Border.all(color: color.withValues(alpha: 0.3)),
                                         ),
                                         child: Text(
                                           level,
-                                          style: TextStyle(color: Colors.white),
+                                          style: GoogleFonts.inter(
+                                            color: color,
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 12,
+                                          ),
                                         ),
                                       );
 
@@ -351,10 +384,13 @@ class _StudentPageState extends State<StudentPage> {
         builder: (context){
 
           return AlertDialog(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
 
             title: Text(student == null
                 ? "Thêm sinh viên"
-                : "Cập nhật sinh viên"),
+                : "Cập nhật sinh viên",
+              style: GoogleFonts.inter(fontWeight: FontWeight.w700),
+            ),
 
             content: Column(
               mainAxisSize: MainAxisSize.min,
@@ -363,22 +399,37 @@ class _StudentPageState extends State<StudentPage> {
 
                 TextField(
                   controller: code,
-                  decoration: InputDecoration(labelText: "Mã SV"),
+                  decoration: InputDecoration(
+                    labelText: "Mã SV",
+                    prefixIcon: const Icon(Icons.badge_rounded, size: 20),
+                  ),
                 ),
+                const SizedBox(height: 12),
 
                 TextField(
                   controller: name,
-                  decoration: InputDecoration(labelText: "Họ tên"),
+                  decoration: InputDecoration(
+                    labelText: "Họ tên",
+                    prefixIcon: const Icon(Icons.person_rounded, size: 20),
+                  ),
                 ),
+                const SizedBox(height: 12),
 
                 TextField(
                   controller: className,
-                  decoration: InputDecoration(labelText: "Lớp"),
+                  decoration: InputDecoration(
+                    labelText: "Lớp",
+                    prefixIcon: const Icon(Icons.class_rounded, size: 20),
+                  ),
                 ),
+                const SizedBox(height: 12),
 
                 TextField(
                     controller: email,
-                    decoration: InputDecoration(labelText: "Email")
+                    decoration: InputDecoration(
+                      labelText: "Email",
+                      prefixIcon: const Icon(Icons.email_rounded, size: 20),
+                    )
                 ),
 
               ],
@@ -390,10 +441,16 @@ class _StudentPageState extends State<StudentPage> {
                   onPressed: (){
                     Navigator.pop(context);
                   },
-                  child: Text("Huỷ")
+                  child: Text("Huỷ", style: GoogleFonts.inter(color: const Color(0xFF94A3B8)))
               ),
 
               ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFF3B82F6),
+                  foregroundColor: Colors.white,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                  elevation: 0,
+                ),
 
                 onPressed: () async {
 

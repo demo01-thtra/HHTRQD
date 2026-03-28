@@ -3,6 +3,7 @@ import 'package:dssstudentfe/ViewModels/risk_viewmodel.dart';
 import 'package:dssstudentfe/ViewModels/score_viewmodel.dart';
 import 'package:dssstudentfe/ViewModels/student_viewmodel.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 
@@ -50,25 +51,32 @@ class _StudentEditPageState extends State<StudentEditPage> {
 
     return Scaffold(
 
-      backgroundColor: Color(0xfff5f7fb),
+      backgroundColor: const Color(0xFFF5F7FA),
 
       appBar: AppBar(
-        backgroundColor: Colors.blue.shade800,
-        title: Text("Chỉnh sửa sinh viên", style: TextStyle(color: Colors.white),),
+        backgroundColor: const Color(0xFF1E293B),
+        iconTheme: const IconThemeData(color: Colors.white),
+        title: Text("Chỉnh sửa sinh viên",
+          style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.w600),
+        ),
+        elevation: 0,
       ),
 
       body: Center(
         child: SingleChildScrollView(
           child: Container(
-            padding: EdgeInsets.all(30),
+            width: 600,
+            margin: const EdgeInsets.symmetric(vertical: 28),
+            padding: const EdgeInsets.all(32),
           
             decoration: BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(20),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black12,
-                  blurRadius: 8,
+                  color: Colors.black.withValues(alpha: 0.06),
+                  blurRadius: 20,
+                  offset: const Offset(0, 8),
                 )
               ],
             ),
@@ -80,26 +88,20 @@ class _StudentEditPageState extends State<StudentEditPage> {
               children: [
           
                 /// TITLE
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Chỉnh sửa thông tin sinh viên",
-                      style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
+                Text(
+                  "Chỉnh sửa thông tin sinh viên",
+                  style: GoogleFonts.inter(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w700,
+                    color: const Color(0xFF1E293B),
+                  ),
                 ),
           
-                SizedBox(height: 8),
+                const SizedBox(height: 6),
           
                 Text(
                   "Cập nhật thông tin của sinh viên ${widget.student.studentCode}",
-                  style: TextStyle(
-                    color: Colors.grey,
-                  ),
+                  style: GoogleFonts.inter(color: const Color(0xFF94A3B8), fontSize: 14),
                 ),
           
                 SizedBox(height: 25),
@@ -282,16 +284,17 @@ class _StudentEditPageState extends State<StudentEditPage> {
           
                   children: [
           
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.green.shade700,
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 25,
-                          vertical: 14,
+                    Expanded(
+                      child: ElevatedButton.icon(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xFF22C55E),
+                          foregroundColor: Colors.white,
+                          padding: const EdgeInsets.symmetric(vertical: 14),
+                          elevation: 0,
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                         ),
-                      ),
           
-                      onPressed: _isSaving ? null : () async {
+                        onPressed: _isSaving ? null : () async {
                         final scoreText = testScoreController.text.trim();
                         final attText = attendanceController.text.trim();
                         final hoursText = studyHoursController.text.trim();
@@ -357,17 +360,23 @@ class _StudentEditPageState extends State<StudentEditPage> {
                         }
                       },
           
-                      child: _isSaving
-                        ? SizedBox(width: 20, height: 20, child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2))
-                        : Text(
-                            "Lưu & Tính AHP",
-                            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-                          ),
+                        icon: _isSaving
+                          ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2))
+                          : const Icon(Icons.save_rounded, size: 20),
+                        label: Text(
+                          _isSaving ? "Đang lưu..." : "Lưu & Tính AHP",
+                          style: GoogleFonts.inter(fontWeight: FontWeight.w600),
+                        ),
+                      ),
                     ),
           
-                    SizedBox(width: 10),
+                    const SizedBox(width: 12),
           
                     OutlinedButton(
+                      style: OutlinedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                      ),
           
                       onPressed: () {
                         Navigator.pop(context);
