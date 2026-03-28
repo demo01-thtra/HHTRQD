@@ -82,7 +82,7 @@ score_cols[3].metric("Mức rủi ro", f"{icon} {risk_level}")
 fig_gauge, axes = plt.subplots(1, 3, figsize=(12, 3))
 scores = [('p_fail', student['p_fail']), ('ahp_score', student['ahp_score']),
           ('final_score', student['final_score'])]
-colors_map = [(0.75, 'red'), (0.55, 'orange'), (0, 'green')]
+colors_map = [(0.61, 'red'), (0.31, 'orange'), (0, 'green')]
 
 for ax, (label, val) in zip(axes, scores):
     color = 'green'
@@ -95,8 +95,8 @@ for ax, (label, val) in zip(axes, scores):
     ax.set_xlim(0, 1)
     ax.set_yticks([])
     ax.set_title(f'{label} = {val:.3f}', fontsize=11)
-    ax.axvline(x=0.75, color='red', linestyle=':', alpha=0.5)
-    ax.axvline(x=0.55, color='orange', linestyle=':', alpha=0.5)
+    ax.axvline(x=0.61, color='red', linestyle=':', alpha=0.5)
+    ax.axvline(x=0.31, color='orange', linestyle=':', alpha=0.5)
 
 plt.tight_layout()
 st.pyplot(fig_gauge)

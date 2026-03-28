@@ -118,14 +118,14 @@ with tab2:
             st.markdown("**Theo loại:**")
             st.dataframe(
                 all_interventions['intervention_type'].value_counts().reset_index()
-                .rename(columns={'index': 'Loại', 'intervention_type': 'Loại', 'count': 'Số lượng'}),
+                .rename(columns={'intervention_type': 'Loại', 'count': 'Số lượng'}),
                 use_container_width=True, hide_index=True,
             )
         with stats_col2:
             st.markdown("**Theo trạng thái:**")
             st.dataframe(
                 all_interventions['status'].value_counts().reset_index()
-                .rename(columns={'index': 'Trạng thái', 'status': 'Trạng thái', 'count': 'Số lượng'}),
+                .rename(columns={'status': 'Trạng thái', 'count': 'Số lượng'}),
                 use_container_width=True, hide_index=True,
             )
     else:

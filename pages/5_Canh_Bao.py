@@ -44,12 +44,12 @@ st.divider()
 st.subheader("⚙️ Cấu hình tính điểm rủi ro")
 col1, col2, col3 = st.columns(3)
 with col1:
-    alpha = st.slider("Hệ số α (trọng số DT)", 0.0, 1.0, 0.7, 0.05,
+    alpha = st.slider("Hệ số α (trọng số DT)", 0.0, 1.0, 0.0, 0.05,
                        help="final_score = α × p_fail + (1-α) × ahp_score")
 with col2:
-    high_thresh = st.number_input("Ngưỡng Cao ≥", 0.0, 1.0, 0.75, 0.05)
+    high_thresh = st.number_input("Ngưỡng Cao ≥", 0.0, 1.0, 0.61, 0.05)
 with col3:
-    medium_thresh = st.number_input("Ngưỡng TB ≥", 0.0, 1.0, 0.55, 0.05)
+    medium_thresh = st.number_input("Ngưỡng TB ≥", 0.0, 1.0, 0.31, 0.05)
 
 # ── Chọn đợt cảnh báo ──
 st.subheader("📅 Đợt cảnh báo")

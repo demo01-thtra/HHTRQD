@@ -5,6 +5,7 @@ __pycache__/
 dist/
 build/
 .env
+.venv*/
 
 # Jupyter
 .ipynb_checkpoints/
@@ -15,7 +16,16 @@ build/
 # Temp files
 ~$*
 *.tmp
+*.log
 
 # Model output (có thể tái tạo)
-# AI/decision_tree_model.pkl
-# AI/decision_tree.png
+AI/decision_tree_model.pkl
+AI/decision_tree.png
+
+# Generated data (regeneratable)
+data/dss_database.db
+data/1k_Data_diem_labeled.xlsx
+
+# .NET build artifacts
+AHP_system_BA/bin/
+AHP_system_BA/obj/

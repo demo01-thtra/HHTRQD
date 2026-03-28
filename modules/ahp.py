@@ -1,25 +1,25 @@
 """
 Module AHP (Analytic Hierarchy Process)
-Tính toán trọng số tiêu chí theo phương pháp AHP - Thang Saaty 1-9
+Tinh toan trong so tieu chi theo phuong phap AHP - Thang Saaty 1-9
 """
 import numpy as np
 
-# Bảng chỉ số ngẫu nhiên RI (Saaty, 1980)
+# Bang chi so ngau nhien RI (Saaty, 1980)
 RI_TABLE = {
     1: 0.0, 2: 0.0, 3: 0.58, 4: 0.90, 5: 1.12,
     6: 1.24, 7: 1.32, 8: 1.41, 9: 1.45, 10: 1.49
 }
 
 SAATY_SCALE = {
-    1: "Quan trọng bằng nhau",
-    2: "Giữa 1 và 3",
-    3: "Quan trọng hơn vừa phải",
-    4: "Giữa 3 và 5",
-    5: "Quan trọng hơn nhiều",
-    6: "Giữa 5 và 7",
-    7: "Rất quan trọng hơn",
-    8: "Giữa 7 và 9",
-    9: "Cực kỳ quan trọng hơn",
+    1: "Quan trong bang nhau",
+    2: "Giua 1 va 3",
+    3: "Quan trong hon vua phai",
+    4: "Giua 3 va 5",
+    5: "Quan trong hon nhieu",
+    6: "Giua 5 va 7",
+    7: "Rat quan trong hon",
+    8: "Giua 7 va 9",
+    9: "Cuc ky quan trong hon",
 }
 
 SAATY_VALUES = [1/9, 1/8, 1/7, 1/6, 1/5, 1/4, 1/3, 1/2,
@@ -33,17 +33,17 @@ SAATY_LABELS = [
 
 def calculate_weights(matrix):
     """
-    Tính trọng số ưu tiên từ ma trận so sánh cặp.
-    Sử dụng phương pháp eigenvector (vector riêng) theo Saaty.
+    Tinh trong so uu tien tu ma tran so sanh cap.
+    Su dung phuong phap eigenvector (vector rieng) theo Saaty.
 
     Parameters:
-        matrix: numpy array (n x n) - Ma trận so sánh cặp
+        matrix: numpy array (n x n) - Ma tran so sanh cap
 
     Returns:
-        weights: numpy array - Trọng số các tiêu chí
-        lambda_max: float - Giá trị riêng lớn nhất
-        ci: float - Chỉ số nhất quán (Consistency Index)
-        cr: float - Tỷ số nhất quán (Consistency Ratio)
+        weights: numpy array - Trong so cac tieu chi
+        lambda_max: float - Gia tri rieng lon nhat
+        ci: float - Chi so nhat quan (Consistency Index)
+        cr: float - Ty so nhat quan (Consistency Ratio)
     """
     n = matrix.shape[0]
 
@@ -63,15 +63,15 @@ def calculate_weights(matrix):
 
 
 def is_consistent(cr, threshold=0.10):
-    """Kiểm tra CR ≤ threshold"""
+    """Kiem tra CR <= threshold"""
     return cr <= threshold
 
 
 def create_default_matrix(n):
-    """Tạo ma trận đơn vị n×n (tất cả tiêu chí bằng nhau)"""
+    """Tao ma tran don vi nxn (tat ca tieu chi bang nhau)"""
     return np.ones((n, n))
 
 
 def get_ri(n):
-    """Lấy Random Index cho n tiêu chí"""
+    """Lay Random Index cho n tieu chi"""
     return RI_TABLE.get(n, 1.49)
