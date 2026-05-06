@@ -1,5 +1,6 @@
 # XÂY DỰNG HỆ THỐNG DSS CẢNH BÁO SỚM SINH VIÊN CÓ NGUY CƠ RỚT MÔN DỰA TRÊN TRỌNG SỐ AHP VÀ THUẬT TOÁN DECISION TREE 
 Giảng viên hướng dẫn : TS. Dương Thị Thúy Nga 
+
 Nhóm sinh viên thực hiện:    
                             Hoàng Thanh Trà               1150080120 
                             Trần Thị Ngọc Huyền           1150080138
