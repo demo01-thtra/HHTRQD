@@ -155,22 +155,20 @@ AI API mặc định lắng nghe tại:
 http://localhost:5001
 ```
 
-### Bước 3: build và chạy frontend
+### Bước 3: chạy frontend
 
-Thư mục `build/` không được lưu trong repo (gitignore), cần build từ source bằng Flutter SDK:
+**Cách A: tải exe từ GitHub Releases (không cần Flutter SDK)**
+
+1. Vào [Releases](https://github.com/demo01-thtra/HHTRQD/releases/latest)
+2. Tải file `dssstudentfe-windows-x64.zip`
+3. Giải nén và chạy `dssstudentfe.exe`
+
+**Cách B: build từ source (cần Flutter SDK)**
 
 ```powershell
 cd student_ahp_system_FE
 flutter pub get
 flutter run -d windows
-```
-
-Nếu chỉ muốn build ra exe mà không cần debug:
-
-```powershell
-cd student_ahp_system_FE
-flutter build windows --debug
-.\build\windows\x64\runner\Debug\dssstudentfe.exe
 ```
 
 Lưu ý: backend `5045` và AI API `5001` phải chạy trước khi mở frontend.
