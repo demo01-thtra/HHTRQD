@@ -1,4 +1,11 @@
-# DSS Student Risk
+# XÂY DỰNG HỆ THỐNG DSS CẢNH BÁO SỚM SINH VIÊN CÓ NGUY CƠ RỚT MÔN DỰA TRÊN TRỌNG SỐ AHP VÀ THUẬT TOÁN DECISION TREE 
+Giảng viên hướng dẫn : TS. Dương Thị Thúy Nga 
+Nhóm sinh viên thực hiện:    
+                            Hoàng Thanh Trà               1150080120 
+                            Trần Thị Ngọc Huyền           1150080138
+                            Trần Ngọc Phương Linh         1150080103
+                            Lê Huyền Thục                 1150080119
+                            Lê Văn Bình                   1150080086
 
 Hệ thống hỗ trợ cảnh báo sớm sinh viên có nguy cơ rớt môn, xây dựng từ 3 phần chính:
 
