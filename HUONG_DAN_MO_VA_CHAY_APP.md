@@ -61,13 +61,9 @@ Nghĩa là MySQL cần chạy và có database `student_project`.
 ### Frontend
 
 - Source: `student_ahp_system_FE`
-- File exe đã build sẵn:
+- Thư mục `build/` bị gitignore → cần build từ source hoặc tải exe từ [GitHub Releases](https://github.com/demo01-thtra/HHTRQD/releases/latest)
 
-```text
-student_ahp_system_FE\build\windows\x64\runner\Debug\dssstudentfe.exe
-```
-
-## 4. Cách mở nhanh app đã build sẵn
+## 4. Cách chạy app
 
 Mở 3 cửa sổ terminal tại thư mục gốc repo sau khi clone.
 
@@ -85,10 +81,19 @@ Now listening on: http://localhost:5045
 
 ### Bước 2: chạy AI API
 
-Nếu muốn dùng đúng môi trường đã có sẵn trong repo:
+Nếu repo đã có sẵn môi trường ảo:
 
 ```powershell
 .\.venv-1\Scripts\python.exe AI\ai_api.py
+```
+
+Nếu chưa có, tạo mới:
+
+```powershell
+py -m venv .venv-ai
+.\.venv-ai\Scripts\activate
+pip install -r AI\requirements.txt
+python AI\ai_api.py
 ```
 
 Khi chạy đúng sẽ có dòng gần giống:
@@ -115,7 +120,7 @@ flutter run -d windows
 
 Lưu ý: backend `5045` và AI API `5001` vẫn phải chạy trước.
 
-## 6. Cách kiểm tra app đã chạy đúng chưa
+## 5. Cách kiểm tra app đã chạy đúng chưa
 
 Sau khi bật backend và AI API, có thể kiểm tra nhanh:
 
@@ -139,7 +144,7 @@ http://localhost:5001/api/ai/model-info
 
 Nếu chạy đúng sẽ trả về JSON thông tin mô hình.
 
-## 7. Cách mở project để chỉnh sửa
+## 6. Cách mở project để chỉnh sửa
 
 ### Nếu sửa backend .NET
 
@@ -156,7 +161,7 @@ Nếu chạy đúng sẽ trả về JSON thông tin mô hình.
 - Mở thư mục `student_ahp_system_FE`
 - Entry chính là `student_ahp_system_FE\lib\main.dart`
 
-## 8. Lỗi thường gặp
+## 7. Lỗi thường gặp
 
 ### MySQL chưa chạy
 
@@ -189,7 +194,7 @@ Cách xử lý:
 
 Nguyên nhân thường là backend `5045` hoặc AI API `5001` chưa chạy.
 
-## 9. Lệnh chạy đã kiểm tra thực tế
+## 8. Lệnh chạy đã kiểm tra thực tế
 
 Các lệnh dưới đây đã được kiểm tra chạy được trong repo này:
 
