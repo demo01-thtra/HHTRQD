@@ -118,11 +118,9 @@ Nếu file này thiếu, API AI sẽ không dự đoán được cho đến khi 
 
 ## Cách chạy app
 
-### Cách 1: mở nhanh bản Windows đã build sẵn
+Mở 3 cửa sổ terminal tại thư mục gốc repo sau khi clone.
 
-Mở terminal tại thư mục gốc repo sau khi clone.
-
-#### Bước 1: chạy backend
+### Bước 1: chạy backend
 
 ```powershell
 dotnet run --project AHP_system_BA\DSSStudentRisk.csproj --launch-profile http
@@ -134,7 +132,7 @@ Backend mặc định lắng nghe tại:
 http://localhost:5045
 ```
 
-#### Bước 2: chạy AI API
+### Bước 2: chạy AI API
 
 Nếu repo đã có sẵn môi trường ảo phù hợp:
 
@@ -157,15 +155,9 @@ AI API mặc định lắng nghe tại:
 http://localhost:5001
 ```
 
-#### Bước 3: mở frontend Windows
+### Bước 3: build và chạy frontend
 
-```powershell
-.\student_ahp_system_FE\build\windows\x64\runner\Debug\dssstudentfe.exe
-```
-
-### Cách 2: chạy frontend từ source Flutter
-
-Chỉ dùng cách này nếu cần debug hoặc chỉnh sửa giao diện:
+Thư mục `build/` không được lưu trong repo (gitignore), cần build từ source bằng Flutter SDK:
 
 ```powershell
 cd student_ahp_system_FE
@@ -173,7 +165,15 @@ flutter pub get
 flutter run -d windows
 ```
 
-Lưu ý: backend `5045` và AI API `5001` vẫn phải chạy trước.
+Nếu chỉ muốn build ra exe mà không cần debug:
+
+```powershell
+cd student_ahp_system_FE
+flutter build windows --debug
+.\build\windows\x64\runner\Debug\dssstudentfe.exe
+```
+
+Lưu ý: backend `5045` và AI API `5001` phải chạy trước khi mở frontend.
 
 ## Kiểm tra nhanh sau khi chạy
 

@@ -97,20 +97,22 @@ Khi chạy đúng sẽ có dòng gần giống:
 Running on http://127.0.0.1:5001
 ```
 
-### Bước 3: mở frontend Windows
+### Bước 3: build và chạy frontend
 
-```powershell
-.\student_ahp_system_FE\build\windows\x64\runner\Debug\dssstudentfe.exe
-```
-
-## 5. Cách chạy frontend từ source Flutter
-
-Chỉ dùng cách này nếu muốn debug hoặc chỉnh giao diện.
+Thư mục `build/` không được lưu trong repo (gitignore). Cần build từ source bằng Flutter SDK:
 
 ```powershell
 cd student_ahp_system_FE
 flutter pub get
 flutter run -d windows
+```
+
+Nếu chỉ muốn build ra exe mà không cần debug:
+
+```powershell
+cd student_ahp_system_FE
+flutter build windows --debug
+.\build\windows\x64\runner\Debug\dssstudentfe.exe
 ```
 
 Lưu ý: backend `5045` và AI API `5001` vẫn phải chạy trước.
@@ -156,18 +158,7 @@ Nếu chạy đúng sẽ trả về JSON thông tin mô hình.
 - Mở thư mục `student_ahp_system_FE`
 - Entry chính là `student_ahp_system_FE\lib\main.dart`
 
-## 8. Những điểm README cũ đang không còn đúng
-
-`README.md` hiện tại còn mô tả một phiên bản cũ, cụ thể:
-
-1. Ghi rằng giao diện là Streamlit
-2. Ghi lệnh chạy là `streamlit run Trang_Chu.py`
-3. Ghi dữ liệu dùng SQLite
-4. Ghi cấu trúc thư mục có `Trang_Chu.py`, `pages/`, `test_pipeline.py`
-
-Các điểm trên không phản ánh app đang chạy trong repo hiện tại.
-
-## 9. Lỗi thường gặp
+## 8. Lỗi thường gặp
 
 ### MySQL chưa chạy
 
@@ -200,12 +191,12 @@ Cách xử lý:
 
 Nguyên nhân thường là backend `5045` hoặc AI API `5001` chưa chạy.
 
-## 10. Lệnh chạy đã kiểm tra thực tế
+## 9. Lệnh chạy đã kiểm tra thực tế
 
 Các lệnh dưới đây đã được kiểm tra chạy được trong repo này:
 
 ```powershell
 dotnet run --project AHP_system_BA\DSSStudentRisk.csproj --launch-profile http
 .\.venv-1\Scripts\python.exe AI\ai_api.py
-.\student_ahp_system_FE\build\windows\x64\runner\Debug\dssstudentfe.exe
+cd student_ahp_system_FE && flutter run -d windows
 ```
